@@ -3,7 +3,7 @@ import time
 '''
 Hugging Face Setup
 '''
-# For Hugging Face Credientials
+# Hugging Face Credientials
 from dotenv import dotenv_values
 
 secrets = dotenv_values('hf.env')
@@ -32,7 +32,7 @@ Excel Parsing
 import pandas as pd
 
 # Define the Excel file path
-excel_file = 'Monday_Data.xlsx'
+excel_file = 'MondayData.xlsx'
 
 # Read the Excel file into a DataFrame with selected columns
 df = pd.read_excel(excel_file, usecols=['Name', 'country', 'state', 'City', 'description', 'restaurant_categories', 'vegan', 'gluten_free', 'Additional Information', 'Enriched Description'])
@@ -94,7 +94,7 @@ with open(template_path, 'r', encoding='utf-8') as file:
 rule_path = "rules.txt"
 with open(rule_path, 'r', encoding='utf-8') as file:
     # Read the file line by line into a list of strings
-    rules = file.readlines()        # A list of strings
+    rules = file.readlines()
 
 chatbot = create_chatbot(hf_email, hf_pass)
 chatbot.set_system_prompt(template)             #Reinforce the Template Instructions.
@@ -168,7 +168,7 @@ for i in range (row, int(number_of_descriptions)):
     cleaned_text = '\n'.join(lines)
     cleaned_text = cleaned_text.replace('\n', '')
 
-    # Remove unwanted characters
+    # Remove unwanted characters from output
     characters_to_remove = ['[', ']', "'", '"', '\\']
 
     for char in characters_to_remove:
