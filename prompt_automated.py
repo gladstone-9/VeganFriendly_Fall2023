@@ -32,6 +32,9 @@ Excel Parsing
 import pandas as pd
 
 # Define the Excel file path
+'''
+Change to Excel file name.
+'''
 excel_file = 'MondayData.xlsx'
 
 # Read the Excel file into a DataFrame with selected columns
@@ -99,9 +102,9 @@ with open(rule_path, 'r', encoding='utf-8') as file:
 chatbot = create_chatbot(hf_email, hf_pass)
 chatbot.set_system_prompt(template)             #Reinforce the Template Instructions.
 
-row = int(input(f"What index row to start at?")) - 2
+start_row = int(input(f"What index row to start at?")) - 2
 
-number_of_descriptions = input(f"How many descriptions starting at index {row + 2}?")
+number_of_descriptions = input(f"How many descriptions starting at index {start_row + 2}?")
 
 all_rules = ''
 rule_number = 0
@@ -111,54 +114,20 @@ for rule in rules:
 
 conversations_count = 0     # delete conversations after certain amount
 
-for i in range (row, int(number_of_descriptions)):
-    # Clear conversations to free up space?
-    if conversations_count != 0 and conversations_count % 30 == 0:
-        # chatbot.delete_all_conversations()
-        pass
-
+for row in range (start_row, start_row + int(number_of_descriptions)):
     # Get Orignal Response
-    description = get_background(restaurant_list[row])     #Brief background from Monday Data
+    description = get_background(restaurant_list[row])
     prompt = str(template + description)            
-
-    # Query response until you don't get an error.
-    # while True:
-        # try:
     response = chatbot.chat(prompt)
-        # except:
-            #  time.sleep(30)                         # sleep in seconds
-            #  continue
-        # break
-
     print(response)
 
-    # Fintune Response
+    # Finetune Response
     prompt = all_rules
-
-    error = False
-
-    # Query response until you don't get an error.
-    # while True:
-        # try:
     response = chatbot.chat(prompt)
-        # except:
-            #  time.sleep(30)                         # sleep in seconds
-            #  continue
-        # break
-
-
     print('___Finetuned Response___\n')
     print(response)
 
-    # Write Finetuned response to File
-    # with open('output_description_temp.txt', 'a') as file:
-    #     file.write(response + '\n')
-
-
-    # Clean up outputted string
-    
-    # Split the text into lines
-
+    # Clean up Response
     # Check if the first line starts with 'sure'
     lines = str(response).split('\n')
     if "Sure" in lines[0]:
@@ -174,7 +143,6 @@ for i in range (row, int(number_of_descriptions)):
     for char in characters_to_remove:
         cleaned_text = cleaned_text.replace(char, '')
 
-
     # Write Finetuned response back to Excel
     data_to_write = [cleaned_text]
 
@@ -182,11 +150,7 @@ for i in range (row, int(number_of_descriptions)):
 
     # Save the DataFrame back to the Excel file
     df.to_excel(excel_file, index=False)
-
-    print('___Next Description___\n')
     
     # Move onto the next conversation
-    create_new_conversation(chatbot)
-    row += 1
-
-    conversations_count += 1
+    print('___Next Description___\n')
+    # create_new_conversation(chatbot)
