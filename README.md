@@ -14,3 +14,8 @@ This project interfaces with the [hugging chat API](https://github.com/Soulter/h
 | Free API                                                                     | Occasional overquerying block on account             |
 | Easy to use, setup, and switch out, APIs                                     | Not currently directly interfaced with Monday.com    | 
 | Customizable                                                                 | Currently handles specific formatting of Excel Files |
+
+### Customizing Prompt
+Edit both files directly to customize.
+- **template.txt** sets the system prompt. System prompts allow developers to prescribe the AI's style and task within certain bounds, making it more customizable and adaptable.
+- **rules.txt** are prompts given to the model to refine the original output. Rules can be added or removed.
