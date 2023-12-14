@@ -16,6 +16,7 @@ This project interfaces with the [hugging chat API](https://github.com/Soulter/h
 | Customizable                                                                 | Currently handles specific formatting of Excel Files |
 
 ### Customizing Prompt
-Edit both files directly to customize.
+Edit both .txt files directly to customize.
 - **template.txt** sets the system prompt. System prompts allow developers to prescribe the AI's style and task within certain bounds, making it more customizable and adaptable.
 - **rules.txt** are prompts given to the model to refine the original output. Rules can be added or removed.
+- **get_background()** creates the original prompt. Edit this function based on data available and purpose.
