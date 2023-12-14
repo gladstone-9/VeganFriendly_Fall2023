@@ -4,9 +4,7 @@ A Prompt Engineering tool for automating text generation.
 
 ![alt text](https://github.com/gladstone-9/VeganFriendly_Fall2023/blob/main/Workflow_VeganFriendlyAutomation.png?raw=true)
 
-This project interfaces with the [hugging chat API](https://github.com/Soulter/hugging-chat-api). A hugging chat account is required (modify hf.env credentials).
-
-
+This project interfaces with the [hugging chat API](https://github.com/Soulter/hugging-chat-api). A hugging chat account is required (modify hf.env credentials). Use **prompt_automated.py** for streamlined text generation and **prompt.py** for manual api interfacing. 
 
 | Pros                   | Cons                      |
 |:------------------------|:---------------------------|
@@ -15,7 +13,7 @@ This project interfaces with the [hugging chat API](https://github.com/Soulter/h
 | Easy to use, setup, and switch out, APIs                                     | Not currently directly interfaced with Monday.com    | 
 | Customizable                                                                 | Currently handles specific formatting of Excel Files |
 
-### Customizing Prompt
+### Customizing Text Generation
 Edit both .txt files directly to customize.
 - **template.txt** sets the system prompt. System prompts allow developers to prescribe the AI's style and task within certain bounds, making it more customizable and adaptable.
 - **rules.txt** are prompts given to the model to refine the original output. Rules can be added or removed.
